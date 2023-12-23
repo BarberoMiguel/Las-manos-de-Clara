@@ -5,9 +5,9 @@ require("dotenv").config();
 const loginFunction = async function (req, res) {
     try {
         let email = req.user.email;
-        let name = req.user.name;
+        let nombre = req.user.nombre;
         const payload = {
-        name: name,
+        nombre: nombre,
         email: email,
         check: true
         };

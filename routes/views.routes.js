@@ -5,18 +5,17 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 const checkToken = require("../middlewares/checkToken");
 
 
-// const signupController = require("../controllers/signup.controller");
+const signupController = require("../controllers/signup.controller");
 const loginController = require("../controllers/login.controller");
-// const recoverController = require("../controllers/recover.controller");
-// const logoutController = require("../controllers/logout.controller");
+const logoutController = require("../controllers/logout.controller");
 // const searchController = require("../controllers/search.controller");
 // const moviesControllers = require("../controllers/movies.controller");
 const productsController = require("../controllers/products.controller");
 
 router.post("/login", loginController.loginMiddleware, loginController.loginFunction);
-// router.put("/resetpassword/:recoverToken", recoverController.resetPassword);
-// router.get("/signUp", signupController.signupFunction)
-// router.get("/logout", logoutController.logoutFunction);
+router.get("/google", signupController.signupFunction);
+router.get("/signUp", signupController.signupFunction);
+router.get("/logout", logoutController.logoutFunction);
 
 router.get("/Products", productsController.getProducts);
 // router.get("/detalle/:id?", );
