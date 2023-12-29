@@ -4,7 +4,7 @@ const login = require('../models/login.model');
 
 
 const loginFunction = async function (req, res) {
-    const {email} = req.body;
+    const {email, nombre} = req.body;
     let userexists = await login.datosEmail(email);
     if (Object.keys(userexists).length === 0) {
         let failure = await signup.createGoogle(email, nombre);

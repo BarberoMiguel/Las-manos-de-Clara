@@ -27,6 +27,37 @@ const signupFunction = async (req, res) => {
     
 }
 
+const getInfo = async (email) => {
+    let client, result;
+    try {
+        client = await pool.connect(); // Espera a abrir conexion a bbdd
+        const data = await client.query(queries.getInfo, [email])
+        result = data.rows
+        return result
+    } catch (err) {
+        console.log(err);
+        return "error"
+    } finally {
+        client.release();
+    } 
+}
+
+const updateInfo = async (email, nombre, ciudad, calle, piso, codigo) => {
+    let client;
+    try {
+        client = await pool.connect(); // Espera a abrir conexion a bbdd
+        const data = await client.query(queries.updateInfo, [email, nombre, ciudad, calle, piso, codigo])
+        return "success"
+    } catch (err) {
+        console.log(err);
+        return "error"
+    } finally {
+        client.release();
+    } 
+}
+
 module.exports = {
-    signupFunction
+    signupFunction,
+    getInfo,
+    updateInfo
 }
