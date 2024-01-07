@@ -1,6 +1,7 @@
 CREATE TABLE usuarios (
     email VARCHAR(255) PRIMARY KEY NOT NULL,
     nombre VARCHAR(255) NOT NULL,
+    admin BOOLEAN NOT NULL DEFAULT false,
     ciudad VARCHAR(255),
     calle_numero VARCHAR(255),
     piso_puerta VARCHAR(255),

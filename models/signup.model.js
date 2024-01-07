@@ -1,4 +1,4 @@
-const queries = require('./queries')
+const queries = require('../utils/queries')
 const pool = require('../config/db_pgsql')
 
 const checkEmail = async (email) => {

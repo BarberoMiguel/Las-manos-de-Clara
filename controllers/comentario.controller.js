@@ -14,6 +14,7 @@ const getComentarios = async (req, res) => {
 const postComentario = async (req, res) => {
   let id = req.params.id;
   const {comentario} = req.body;
+  console.log(id);
   try {
       let results = await comentarios.postComentario(id, req.user.nombre, comentario);
       res.status(200).json(results);

@@ -25,13 +25,16 @@ const queries = {
     SELECT *
     FROM productos
     WHERE id=$1`,
+    getColeccion: `
+    SELECT DISTINCT coleccion
+    FROM productos;`,
     getAllComentarios: `
     SELECT *
     FROM comentarios
     WHERE id_producto=$1`,
     postComentario: `
-    INSERT INTO comentarios (nombre_usuario, id_producto, comentario)
-    VALUES ($2, $1, $3)`,
+    INSERT INTO comentarios (id_producto, nombre_usuario, comentario)
+    VALUES ($1, $2, $3)`,
     deleteComentario: `
     DELETE
     FROM comentarios

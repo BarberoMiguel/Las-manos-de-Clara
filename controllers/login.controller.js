@@ -5,6 +5,7 @@ const signup = require('../models/signup.model');
 
 const loginFunction = async function (req, res) {
     try {
+        console.log("prueba4");
         let email = req.user.email;
         let nombre = req.user.nombre;
         const payload = {
@@ -18,26 +19,31 @@ const loginFunction = async function (req, res) {
         res.cookie("access-token", token, {
         httpOnly: true,
         sameSite: "strict",
-        }).status(200).json("success");
+        }).status(200).json({ ok: "success",
+                                user: {nombre: req.user.nombre,
+                                        email: req.user.email,
+                                        admin: req.user.admin} });
     } catch (error) {
         console.error('Error en loginFunction:', error);
+        res.status(200).json({ ok: "error" });
     }
 }
 
 const loginMiddleware = async function (req, res, next) {
     try {
+        console.log("probando");
         passport.authenticate('local', (err, user, info) => {
             if (err) {
-                res.status(500).json("error");
+                res.status(500).json({ ok: "error" });
             } else if (!user) {
                 const message = info.message;
                 if (message === "Usuario no encontrado") {
-                    res.status(200).json(false);
+                    res.status(200).json({ ok: false });
                 }
             } else {
                 req.login(user, (err) => {
                     if (err) {
-                        return res.status(500).json("error");
+                        return res.status(500).json({ ok: "error" });
                     }
                     return next();
                 });
@@ -45,7 +51,7 @@ const loginMiddleware = async function (req, res, next) {
         })(req, res, next); 
     } catch (error) {
         console.log('Error en loginMiddleware:', error);
-        res.status(500).send('Error interno del servidor');
+        res.status(500).json({ ok: "error" });
     }
 }
 

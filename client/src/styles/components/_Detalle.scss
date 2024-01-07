@@ -1,0 +1,159 @@
+@import '../utils/variables.scss';
+
+#detalleContainer {
+    padding-top: 12vw;
+    width: 80vw;
+    margin-left: 10vw;
+}
+
+#detalles {
+    display: flex;
+    flex-direction: row;
+    & #detallesImg {
+        width: 50%;
+        & #imagenGrande {
+            background-color: white;
+            border-radius: 20px;
+            height: 30vh;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            & img {
+                height: 100%;
+            }
+        }
+        & #seccionimagenes {
+            margin-top: 10px ;
+            background-color: #92674b8e;
+            border: 1px solid black;
+            border-radius: 20px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            height: 10vh;
+            & img {
+                height: 100%;
+            }
+        }
+    }
+    & #detallesInfo {
+        width: 50%;
+        padding-top: 20px;
+        position: relative;
+        text-align: center;
+        & #stock {
+            position: absolute;
+            font-size: larger;
+            right: 0;
+            top: 0;
+        }
+        & #title {
+            font-size: 5vw;
+            color: $title;
+        }
+        & h2 {
+            font-size: 3vw;
+            color: $subtitle;
+        }
+        & h3, p {
+            text-align: right;
+            padding-top: 10px;
+        }
+        & section {
+            padding-top: 5vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            & h1 {
+                font-size: 6vw;
+            }
+            & button {
+                background-color: rgb(68, 161, 68);
+                border-radius: 20px;
+                padding: 0 10px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+#comentarios {
+    padding-top: 5vh;
+    text-align: center;
+    & h1 {
+        font-size: 4vw;
+    }
+    & h2 {
+        font-size: 2vw;
+        padding-top: 10px;
+    }
+    & form {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border-radius: 10px;
+        background-color: rgb(64, 64, 209);
+        overflow: hidden;
+        & textarea {
+            width: 50%;
+            min-width: 50%;
+            overflow: scroll;
+            position: relative;
+            right: 0;
+        }
+        & label {
+            font-size: 3vw;
+            margin: 0 5px;
+        }
+        & button {
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 0 5px;
+        }
+    }
+}
+
+#añadirCarrito{
+    position: fixed;
+    top: 20vw;
+    width: 80vw;
+    background-color: #92684b;
+    border-radius: 20px;
+    text-align: center;
+    & h1, label, button {
+        padding: 20px;
+    }
+    & label, button {
+        margin: 20px;
+        border-radius: 10px;
+    }
+    & .Add {
+        background-color: rgb(68, 161, 68);
+        cursor: pointer;
+    }
+    & .Cancel {
+        background-color: rgb(170, 52, 52);
+        cursor: pointer;
+    }
+    & .color {
+        width: 40px;
+        height: 10px;
+    }
+
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+@media screen and (max-width: 700px) {
+    #detalleContainer {
+        padding-top: 15vw;
+    }
+}
+

@@ -1,0 +1,69 @@
+@import '../utils/variables.scss';
+
+main {
+    background-color: $back;
+    min-height: 100vh;
+}
+
+#header {
+    position:fixed;
+    width: 100vw;
+    z-index: 2;
+    & img {
+        width: 10vw;
+        margin: 1vw;
+    }
+    & img:hover {
+        cursor:pointer;
+    }
+}
+
+#header:hover {
+    background-color: $header;
+}
+
+
+#MenuDerecha {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+#MenuLateral {
+    background-color: $header;
+    position: absolute;
+    width: 50vw;
+    height: 100%;
+    z-index: 1;
+    & #menuContent {
+        position: relative;
+        top: 12vw;
+        left: 2vw;
+    }
+    & ul {
+        list-style-type: none;
+    }
+    & h1 {
+        color: $title;
+        margin: 1vw;
+    }
+    & a {
+        text-decoration: none;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    #header img {
+        width: 7vw;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #header img {
+        width: 5vw;
+    }
+}

@@ -1,27 +1,37 @@
-const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const login = require('../models/login.model');
+let passport = null;
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
+function initPassport(_passport) {
+  passport = _passport;
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+  
+  passport.deserializeUser(async (user, done) => {
+    done(null, user);
+  });
+  
+  passport.use(new LocalStrategy(async (email, nombre, done) => {
+    try {
+      console.log("prueba3");
+      let emailSigned = await login.datosEmail(email);
+      if (Object.keys(emailSigned).length === 0) {
+        return done(null, false, { message: 'Usuario no encontrado' });
+      } else {
+        const user = emailSigned;
+        console.log("usuario logueado");
+        return done(null, user);
+      }   
+      } catch (error) {
+      console.log(error);
+      return done(error);
+    }
+  }));
+}
 
-passport.deserializeUser(async (user, done) => {
-  done(null, user);
-});
+function getPassport() {
+  return passport;
+}
 
-passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, done) => {
-  try {
-    let emailSigned = await login.datosEmail(email);
-    if (Object.keys(emailSigned).length === 0) {
-      return done(null, false, { message: 'Usuario no encontrado' });
-    } else {
-      const user = emailSigned;
-      return done(null, user);
-    }   
-    } catch (error) {
-    return done(error);
-  }
-}));
-
-module.exports = passport;
+module.exports = {initPassport, getPassport};

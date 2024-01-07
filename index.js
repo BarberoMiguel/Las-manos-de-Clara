@@ -2,8 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const jwt = require("jsonwebtoken");
+const passport = require('passport');
+const {initPassport} = require("./config/passport-config");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const cors = require('cors');
 const helmet = require('helmet');
 
 const port = 3000;
@@ -23,12 +26,22 @@ app.use(
     },
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
+initPassport(passport);
+const corsOptions = {
+  origin: 'http://localhost:5173', 
+  methods: 'GET,PUT,POST,DELETE',
+  credentials: true, 
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
 
 const viewsRoutes = require("./routes/views.routes");
 const adminRoutes = require("./routes/admin.routes");
 
-app.use("/", viewsRoutes);
-app.use("/admin", adminRoutes);
+app.use("/", cors(corsOptions), viewsRoutes);
+app.use("/admin", cors(corsOptions), adminRoutes);
 
 app.use("*", (req, res) => {
     res.status(404).json({

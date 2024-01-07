@@ -1,14 +1,16 @@
 const signup = require('../models/signup.model');
+const queries = require('../utils/queries')
+const pool = require('../config/db_pgsql')
 
 const signupFunction = async (req, res) => {
     const {nombre, email} = req.body;
     let emailAvailable = await signup.checkEmail(email);
     if (emailAvailable == false) {
-        res.status(200).json(emailAvailable);
+        res.status(200).json({ ok: emailAvailable });
     } else {
         let userCreated = await signup.createUser(email, nombre);
         if (userCreated == "error") {
-            res.status(200).json(userCreated);
+            res.status(200).json({ ok: userCreated });
         } else {
             const datos = {
                 email: email,
@@ -20,7 +22,7 @@ const signupFunction = async (req, res) => {
                 },
                 body: JSON.stringify(datos) 
             };
-            let response = await fetch("/login", opciones).then(res => res.json());
+            let response = await fetch("http://localhost:3000/login", opciones).then(res => res.json());
             res.status(200).json(response);
         }
     }

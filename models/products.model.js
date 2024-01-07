@@ -31,6 +31,21 @@ const getDetails = async (id) => {
     } 
 }
 
+const getColeccion= async () => {
+    let client, result;
+    try {
+        client = await pool.connect(); // Espera a abrir conexion a bbdd
+        const data = await client.query(queries.getColeccion)
+        result = data.rows
+        return result
+    } catch (err) {
+        console.log(err);
+        return "error"
+    } finally {
+        client.release();
+    } 
+}
+
 const createProduct = async (nombre, coleccion, descripcion, precio, stock, imagenes, color) => {
     let client;
     let talla = "L";
@@ -80,6 +95,7 @@ const products = {
     getDetails,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getColeccion
 }
 module.exports = products;

@@ -1,0 +1,41 @@
+@import '../utils/variables.scss';
+
+.homeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    height: 80vh;
+    margin: 0 5vw 5vh 5vw;
+    & a {
+        text-decoration: none;
+    }
+    & h1 {
+        color: white;
+        font-family: cursive;
+        text-align: center;
+        font-size: xx-large;
+    }
+}
+
+#verano {
+    background: url("/verano.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+#primavera {
+    background: url("/primavera.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    #header img {
+        width: 7vw;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #header img {
+        width: 5vw;
+    }
+}

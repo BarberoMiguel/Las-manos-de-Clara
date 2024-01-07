@@ -1,0 +1,36 @@
+@import '../utils/variables.scss';
+
+#searchContainer {
+    padding-top: 12vw;
+    & input {
+        min-width: 250px;
+    }
+    & form {
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+        max-width: 80vw;
+        background-color: #92674b8e;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        & label, input {
+            margin: 5px 4px;
+        }
+    }
+    & button {
+        background-color: $header;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 10px 0;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #searchContainer {
+        padding-top: 15vw;
+    }
+}

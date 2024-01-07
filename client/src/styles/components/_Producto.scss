@@ -1,0 +1,50 @@
+@import '../utils/variables.scss';
+
+.product {
+    width: 80vw;
+    height: 30vh;
+    overflow: hidden;
+    margin: 5vh auto;
+    border-radius: 20px;
+    background-color: #92674b8e;
+    display: flex;
+    flex-direction: row;
+    & img {
+        width: 50%;
+    }
+    & section {
+        position: relative;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        & h1 {
+            font-size: 4vw;
+            text-align: center;
+            color: $title;
+        }
+        & h4 {
+            font-size: 2vw;
+            text-align: center;
+            color: $subtitle;
+        }
+        & .precio {
+            color: black;
+        }
+    }
+}
+
+#adminButtons {
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    top: 5px;
+    right: -20px;
+    & img {
+        width: 5vw;
+        margin: 5px;
+    }
+}

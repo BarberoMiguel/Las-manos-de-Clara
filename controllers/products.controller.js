@@ -20,6 +20,15 @@ const getDetail = async (req, res) => {
     }
 }
 
+const getColeccion = async (req, res) => {
+  try {
+      let results = await products.getColeccion();
+      res.status(200).json(results);
+    } catch (error) {
+      res.status(400).json({ msg: `ERROR: ${error.stack}` });
+    }
+}
+
 const createProduct = async (req, res) => {
   const {nombre, coleccion, descripcion, precio, stock, imagenes, color} = req.body;
   try {
@@ -56,5 +65,6 @@ module.exports = {
     getDetail,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getColeccion
 }
